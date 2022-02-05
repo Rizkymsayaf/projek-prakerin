@@ -14,20 +14,22 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  {{ Request::is('dashboard/anak_asuh*')? 'active' : '' }}" href="/dashboard/anak_asuh">
+          <a class="nav-link  {{ Request::is('dashboard/anak*')? 'active' : '' }}" href="/dashboard/anak">
             <span data-feather="user-check"></span>
-            Anak asuh
+            Anak
           </a>
         <li class="nav-item">
           <a class="nav-link  {{ Request::is('dashboard/donasi*')? 'active' : '' }}" href="/dashboard/donasi">
             <span data-feather="dollar-sign"></span>
             Donasi
           </a>
+        </li>
         <li class="nav-item">
-          <a class="nav-link  {{ Request::is('dashboard/pengasuh*')? 'active' : '' }}" href="/dashboard/anak_asuh">
+          <a class="nav-link  {{ Request::is('dashboard/pengasuh*')? 'active' : '' }}" href="/dashboard/pengasuh">
             <span data-feather="users"></span>
             Pengasuh
           </a>
+        </li>
         <li class="nav-item">
           <a class="nav-link  {{ Request::is('dashboard/laporan*')? 'active' : '' }}" href="/dashboard/anak_asuh">
             <span data-feather="book"></span>

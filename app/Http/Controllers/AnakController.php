@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Anak_Asuh;
-use App\Http\Requests\StoreAnak_AsuhRequest;
-use App\Http\Requests\UpdateAnak_AsuhRequest;
+use App\Models\Anak;
+use App\Http\Requests\StoreAnakRequest;
+use App\Http\Requests\UpdateAnakRequest;
 use Illuminate\Http\Request;
 
-class AnakAsuhController extends Controller
+class AnakController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +16,8 @@ class AnakAsuhController extends Controller
      */
     public function index()
     {
-        //
-        $anak_Asuh = Anak_Asuh::all();
-        return view('dashboard.anak_asuh.index', compact('anak_Asuh'));
-
-
+        $anak = Anak::all();
+        return view('dashboard.anak.index', compact('anak'));
     }
 
     /**
@@ -30,13 +27,13 @@ class AnakAsuhController extends Controller
      */
     public function create()
     {
-        return view('dashboard.anak_asuh.create');
+        return view('dashboard.anak.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreAnak_AsuhRequest  $request
+     * @param  \App\Http\Requests\StoreAnakRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,45 +44,44 @@ class AnakAsuhController extends Controller
             'tanggal_lahir' => 'required',
         ]);
 
-
-      Anak_Asuh::create($validatedData);
-      return redirect('dashboard/anak_asuh')->with('success', 'New Post has been added');
+      Anak::create($validatedData);
+      return redirect('dashboard/anak')->with('success', 'New Data has been added');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Anak_Asuh  $anak_Asuh
+     * @param  \App\Models\Anak  $anak
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $anak = Anak_Asuh::findOrFail($id);
-        return view('dashboard.anak_asuh.show', compact('anak'));
+        $anak = Anak::findOrFail($id);
+        return view('dashboard.anak.show', compact('anak'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Anak_Asuh  $anak_Asuh
+     * @param  \App\Models\Anak  $anak
      * @return \Illuminate\Http\Response
      */
-    public function edit(Anak_Asuh $anak_Asuh)
+    public function edit(Anak $anak)
     {
-        return view('dashboard.anak_asuh.edit', [
-            'anak' => $anak_Asuh,
-            'Anak_Asuhs' => Anak_Asuh::all()
+        return view('dashboard.anak.edit', [
+            'a' => $anak,
+            'anaks' => Anak::all()
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateAnak_AsuhRequest  $request
-     * @param  \App\Models\Anak_Asuh  $anak_Asuh
+     * @param  \App\Http\Requests\UpdateAnakRequest  $request
+     * @param  \App\Models\Anak  $anak
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Anak_Asuh $anak_Asuh)
+    public function update(Request $request, Anak $anak)
     {
         $validatedData = $request->validate([
             'nama' => 'required|max:255',
@@ -94,20 +90,20 @@ class AnakAsuhController extends Controller
         ]);
 
 
-        Anak_Asuh::where('id', $anak_Asuh->id)
+        Anak::where('id', $anak->id)
         -> update($validatedData);
-      return redirect('dashboard/anak_asuh')->with('success', 'New Data has been added');
+      return redirect('dashboard/anak')->with('success', 'New Data has been added');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Anak_Asuh  $anak_Asuh
+     * @param  \App\Models\Anak  $anak
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Anak_Asuh $anak_Asuh)
+    public function destroy(Anak $anak)
     {
-        Anak_Asuh::destroy($anak_Asuh->id);
-        return redirect('/dashboard/anak_asuh')->with('success', 'Data has been deleted');
+        Anak::destroy($anak->id);
+        return redirect('/dashboard/anak')->with('success', 'data has been deleted');
     }
 }

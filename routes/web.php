@@ -3,16 +3,18 @@
 // use App\Models\Post;
 // use App\Models\User;
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DonasiController;
 use App\Models\Category;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AnakController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\DonasiController;
 use App\Http\Controllers\AnakAsuhController;
-use GuzzleHttp\Middleware;
+use App\Http\Controllers\DashboardPengasuhController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardPostController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -84,9 +86,7 @@ Route::get('dashboard', function() {
 // Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/posts', DashboardPostController::class )->middleware('auth');
 Route::resource('/dashboard/anak_asuh', AnakAsuhController::class )->middleware('auth');
-Route::resource('/dashboard/anak_asuh', AnakAsuhController::class )->middleware('auth');
-
-
+Route::resource('/dashboard/anak', AnakController::class )->middleware('auth');
 
 Route::get('/beranda', function () {
     return view('beranda', [
@@ -96,5 +96,6 @@ Route::get('/beranda', function () {
 
 
 Route::resource('/dashboard/donasi', DonasiController::class )->middleware('auth');
+Route::resource('/dashboard/pengasuh', DashboardPengasuhController::class )->middleware('auth');
 
 

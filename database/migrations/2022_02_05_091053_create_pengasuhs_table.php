@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AnakAsuhs extends Migration
+class CreatePengasuhsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class AnakAsuhs extends Migration
      */
     public function up()
     {
-        Schema::create('Anak_Asuhs', function (Blueprint $table) {
+        Schema::create('pengasuhs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->string('nama');
-            $table->string('umur');
-            $table->date('tanggal_lahir');
+            $table->string('status');
+            $table->string('tanggal');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
@@ -30,6 +31,6 @@ class AnakAsuhs extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Anak_Asuhs');
+        Schema::dropIfExists('pengasuhs');
     }
 }
