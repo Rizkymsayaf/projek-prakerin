@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Post;
 use App\Models\Donasi;
+use App\Models\Laporan;
 use App\Models\Pengasuh;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -53,10 +54,12 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
     public function donasi(){
-        return $this->hasMany(Donasi::class);
+        return $this->hasMany(Laporan::class);
     }
 
     public function pengasuh(){
         return $this->hasMany(Pengasuh::class);
     }
+
+
 }

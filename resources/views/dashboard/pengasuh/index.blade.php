@@ -19,8 +19,8 @@
         <tr>
           <th scope="col">No</th>
           <th scope="col">Nama</th>
-          <th scope="col">Status</th>
-          <th scope="col">Tanggal</th>
+          <th scope="col">Alamat</th>
+          <th scope="col">Tanggal Lahir</th>
         </tr>
       </thead>
       <tbody>
@@ -29,7 +29,7 @@
           <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $p->nama }}</td>
-            <td>{{ $p->status }}</td>
+            <td>{{ $p->alamat }}</td>
             <td>{{ $p->tanggal }}</td>
             <td>
                 <a href="/dashboard/pengasuh/{{ $p->id }}" class="badge bg-info"> <span data-feather="eye"></span></a>

@@ -5,33 +5,34 @@
   </div>
   <div class="col-lg-8">
 
-      <form method="post" action="/dashboard/pengasuh " class="mb-5">
+      <form method="post" action="/dashboard/pengasuh " class="mb-5" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
-          <label for="nama" class="form-label">Nama</label>
-          <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" required  autofocus value="{{ old('nama') }}">
-          @error('nama')
-          <div class="invalid-feedback">
-              {{ $message }}
-          </div>
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"
+                name="nama" required  autofocus value="{{ old('nama') }}">
+                @error('nama')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
 
-          @enderror
-        </div>
+                @enderror
+              </div>
         <div class="mb-3">
-          <label for="status" class="form-label">Status</label>
-          <select class="form-select" name="status">
-           <option value="hadir">hadir</option>
-           <option value="tidak">Tidak Hadir</option>
-          </select>
-          @error('status')
-          <div class="invalid-feedback">
-              {{ $message }}
-          </div>
+            <div class="mb-3">
+                <label for="alamat" class="form-label">Alamat</label>
+                <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat"
+                name="alamat" required  autofocus value="{{ old('alamat') }}">
+                @error('alamat')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
 
-          @enderror
-        </div>
+                @enderror
+              </div>
         <div class="mb-3">
-            <label for="tanggal" class="form-label">Tanggal</label>
+            <label for="tanggal" class="form-label">Tanggal Lahir</label>
             <input type="date" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal" name="tanggal" required  autofocus value="{{ old('tanggal') }}">
             @error('tanggal')
             <div class="invalid-feedback">
@@ -40,7 +41,35 @@
 
             @enderror
           </div>
+
+          <div class="mb-3">
+            <label for="image" class="form-label">foto</label>
+            <img class="img-preview img-fluid mb-3 col-sm-5">
+            <input class="form-control @error('image') is-invalid @enderror " type="file" id="image"
+            name="image" onchange="previewImage()">
+            @error('image')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+
+            @enderror
+          </div>
         <button type="submit" class="btn btn-primary">Create Post</button>
       </form>
+      <script>
+        function previewImage(){
+
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.  img-preview');
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.file[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+        }
+    </script>
   </div>
 @endsection

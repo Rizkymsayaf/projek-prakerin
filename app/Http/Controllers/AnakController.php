@@ -6,6 +6,7 @@ use App\Models\Anak;
 use App\Http\Requests\StoreAnakRequest;
 use App\Http\Requests\UpdateAnakRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AnakController extends Controller
 {
@@ -42,7 +43,12 @@ class AnakController extends Controller
             'nama' => 'required|max:255',
             'umur' => 'required',
             'tanggal_lahir' => 'required',
+            'image' => 'image|file|max:1024',
         ]);
+
+      if($request->file('image')){
+        $validatedData['image'] = $request->file('image')->store('anak-images');
+    }
 
       Anak::create($validatedData);
       return redirect('dashboard/anak')->with('success', 'New Data has been added');
@@ -87,12 +93,22 @@ class AnakController extends Controller
             'nama' => 'required|max:255',
             'umur' => 'required',
             'tanggal_lahir' => 'required',
+            'image' => 'image|file|max:1024',
         ]);
 
+        if($request->file('image')){
+            if($request->oldImage){
+                Storage::delete($request->oldImage);
+            }
+
+            $validatedData['image'] = $request->file('image')->store('anak-images');
+        }
 
         Anak::where('id', $anak->id)
         -> update($validatedData);
       return redirect('dashboard/anak')->with('success', 'New Data has been added');
+
+
     }
 
     /**
@@ -103,6 +119,9 @@ class AnakController extends Controller
      */
     public function destroy(Anak $anak)
     {
+        if($anak->image){
+            Storage::delete($anak->image);
+        }
         Anak::destroy($anak->id);
         return redirect('/dashboard/anak')->with('success', 'data has been deleted');
     }

@@ -18,6 +18,7 @@ class CreateAnaksTable extends Migration
             $table->string('nama');
             $table->integer('umur');
             $table->string('tanggal_lahir');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

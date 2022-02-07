@@ -5,7 +5,7 @@
   </div>
   <div class="col-lg-8">
 
-      <form method="post" action="/dashboard/pengasuh/{{ $p->id }} " class="mb-5">
+      <form method="post" action="/dashboard/pengasuh/{{ $p->id }} " class="mb-5"  enctype="multipart/form-data">
         @method('put')
         @csrf
         <div class="mb-3">
@@ -19,12 +19,10 @@
           @enderror
         </div>
         <div class="mb-3">
-            <label for="status" class="form-label">Status</label>
-            <select class="form-select" name="status">
-             <option value="hadir">hadir</option>
-             <option value="tidak">Tidak Hadir</option>
-            </select>
-            @error('status')
+            <label for="alamat" class="form-label">alamat</label>
+            <input type="text" class="form-control  @error('alamat') is-invalid @enderror" id="alamat" name="alamat"  required  autofocus value="{{ old('alamat', $p->alamat) }}
+             required autofocu value="{{ old('alamat', $p->alamat) }}">
+            @error('alamat')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
@@ -42,9 +40,37 @@
             @enderror
           </div>
 
-        </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">foto</label>
+            <input type="hidden" name="oldImage" value="{{ $p->image }}">
+            <img src="{{ asset('storage/'. $p->image) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+            <input class="form-control @error('image') is-invalid @enderror " type="file" id="image"
+            name="image" onchange="previewImage()">
+            @error('image')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+
+            @enderror
+          </div>
         <button type="submit" class="btn btn-primary">Update Data</button>
       </form>
   </div>
+
+  <script>
+    function previewImage(){
+
+    const image = document.querySelector('#image');
+    const imgPreview = document.querySelector('.  img-preview');
+    imgPreview.style.display = 'block';
+
+    const oFReader = new FileReader();
+    oFReader.readAsDataURL(image.file[0]);
+
+    oFReader.onload = function(oFREvent){
+        imgPreview.src = oFREvent.target.result;
+    }
+    }
+    </script>
 
 @endsection

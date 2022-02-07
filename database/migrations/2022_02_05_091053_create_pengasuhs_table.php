@@ -17,8 +17,9 @@ class CreatePengasuhsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('nama');
-            $table->string('status');
+            $table->string('alamat');
             $table->string('tanggal');
+            $table->string('image')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });

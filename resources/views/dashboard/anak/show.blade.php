@@ -19,6 +19,11 @@
                         <button class="btn btn-danger" onclick="return confirm('Are You Sure')"><span data-feather="x-circle"></span>Delete</button>
                     </form>
 
+                    <div style="max-height:350px; overflow:hidden;">
+
+                        <img src="{{ asset('storage/'. $anak->image) }}" alt="{{ $anak->image }}" class="img-fluid mt-3">
+                    </div>
+
                   <table class="table table-striped table-sm">
                     <thead>
                       <tr>
@@ -32,7 +37,7 @@
                         <tr>
                           <td>{{ $anak->nama }}</td>
                           <td>{{  $anak->umur}}</td>
-                          <td>{{  $anak->alamat}}</td>
+                          <td>{{  $anak->tanggal_lahir}}</td>
 
                         </tr>
 

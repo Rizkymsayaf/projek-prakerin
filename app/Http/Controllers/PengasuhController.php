@@ -6,6 +6,7 @@ use App\Models\Pengasuh;
 use App\Http\Requests\StoreBarangRequest;
 use App\Http\Requests\UpdateBarangRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PengasuhController extends Controller
 {
@@ -44,9 +45,15 @@ class PengasuhController extends Controller
     {
         $validatedData = $request->validate([
             'nama' => 'required|max:255',
-            'status' => 'required',
+            'alamat' => 'required',
             'tanggal' => 'required',
+            'image' => 'image|file|max:1024',
         ]);
+
+
+      if($request->file('image')){
+        $validatedData['image'] = $request->file('image')->store('pengasuh-images');
+    }
 
         $validatedData['user_id'] = auth()->user()->id;
 
@@ -91,11 +98,15 @@ class PengasuhController extends Controller
     {
         $rules = [
             'nama' => 'required|max:255',
-            'status' => 'required',
-            'tanggal' => 'required'
+            'alamat' => 'required',
+            'tanggal' => 'required',
+            'image' => 'image|file|max:1024',
         ];
 
         $validatedData =  $request->validate($rules);
+        if($request->file('image')){
+            $validatedData['image'] = $request->file('image')->store('pengasuh-images');
+        }
 
         $validatedData['user_id'] = auth()->user()->id;
 
@@ -112,6 +123,9 @@ class PengasuhController extends Controller
      */
     public function destroy(Pengasuh $pengasuh)
     {
+        if($pengasuh->image){
+            Storage::delete($pengasuh->image);
+        }
         Pengasuh::destroy($pengasuh->id);
         return redirect('/dashboard/pengasuh')->with('success', 'Post has been deleted');
     }

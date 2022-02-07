@@ -40,15 +40,19 @@
           @enderror
         </div>
         <div class="mb-3">
-          <label for="bank" class="form-label">Bank</label>
-          <input type="text" class="form-control @error('bank') is-invalid @enderror" id="bank" name="bank" required  autofocus value="{{ old('bank', $d->bank) }}">
-          @error('bank')
-          <div class="invalid-feedback">
-              {{ $message }}
-          </div>
+            <label for="bank" class="form-label">Nama Bank</label>
+            <select class="form-select" name="bank">
+             <option value="Mandiri">Mandiri</option>
+             <option value="Bri">Bri</option>
+             <option value="Bca">Bca</option>
+            </select>
+            @error('bank')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
 
-          @enderror
-        </div>
+            @enderror
+          </div>
         <div class="mb-3">
           <label for="nominal" class="form-label">Nominal</label>
           <input type="number" class="form-control @error('nominal') is-invalid @enderror" id="nominal" name="nominal" required  autofocus value="{{ old('nominal', $d->nominal) }}">

@@ -5,23 +5,33 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          {{-- <li class="nav-item">
-            <a class="nav-link  {{ ($active === "home")? 'active' : '' }}"  href="/">Home</a>
+           <li class="nav-item">
+            <a class="nav-link  {{ Request::is('/*')? 'active' : '' }}"  href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ ($active === "about")? 'active' : '' }}" href="/about">about</a>
+            <a class="nav-link {{ Request::is('about*')? 'active' : '' }}" href="/about">about</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ ($active === "posts")? 'active' : '' }}" href="/posts">Blog</a>
+            <a class="nav-link {{ Request::is('posts*')? 'active' : '' }}" href="/posts">Blog</a>
           </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                       <a class="nav-link {{ Request::is('categories*')? 'active' : '' }}" href="/categories">categories</a>
                     </li> --}}
 
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('beranda*')? 'active' : '' }}" href="/beranda">Beranda</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('donasi*')? 'active' : '' }}" href="/donasi/create">Donasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('profile*')? 'active' : '' }}" href="/profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('laporan*')? 'active' : '' }}" href="/laporan">Laporan</a>
+                    </li>
                 </ul>
+            </ul>
 
         <ul class="navbar-nav ms-auto">
             @auth

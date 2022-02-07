@@ -14,19 +14,25 @@
                 <button class="btn btn-danger" onclick="return confirm('Are You Sure')"><span data-feather="x-circle"></span>Delete</button>
             </form>
 
+
+            <div style="max-height:350px; overflow:hidden;">
+
+                <img src="{{ asset('storage/'. $pengasuh->image) }}" alt="{{ $pengasuh->image }}" class="img-fluid mt-3">
+            </div>
+
             <table class="table table-striped table-sm">
                 <thead>
                   <tr>
                     <th scope="col">Nama</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Tanggal </th>
+                    <th scope="col">alamat</th>
+                    <th scope="col">Tanggal_lahir </th>
                 </tr>
                 </thead>
                 <tbody>
 
                     <tr>
                       <td>{{ $pengasuh->nama }}</td>
-                      <td>{{  $pengasuh->status}}</td>
+                      <td>{{  $pengasuh->alamat}}</td>
                       <td>{{  $pengasuh->tanggal}}</td>
 
                     </tr>

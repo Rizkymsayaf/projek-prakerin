@@ -11,19 +11,20 @@ class Pengasuh extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $with =['pengasuh'];
 
-    public $table = 'pengasuhs ';
+    // public $table = 'pengasuhs';
 
-    protected $fillable = [
-        'nama',
-        'status',
-        'tanggal',
-    ];
-
-
+    // protected $fillable = [
+    //     'nama',
+    //     'status',
+    //     'tanggal',
+    // ];
 
 
-public function pengguna(){
+
+
+public function pengasuh(){
     return $this->belongsTo(User::class, 'user_id');
 }
 }

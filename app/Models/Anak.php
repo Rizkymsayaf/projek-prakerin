@@ -16,6 +16,7 @@ class Anak extends Model
         'nama',
         'umur',
         'tanggal_lahir',
+        'image',
     ];
 
 }
